@@ -1,0 +1,36 @@
+﻿@model Pagos_Challenge.Models.Pago
+
+@{
+    ViewBag.Title = "BorrarPago";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row" style="margin-top:30px">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header bg-danger text-white">
+                <h4>Eliminar Pago</h4>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-danger">
+                    ¿Desea Eliminar este pago?
+                </div>
+                <div class="mb-3">
+                    <label><strong>Producto/Servicio:</strong></label> @Html.DisplayTextFor(m => m.pago)
+                </div>
+                <div class="mb-3">
+                    <label><strong>Fecha:</strong></label> @Model.fecha.ToString("yyyy-MM-dd")
+                </div>
+                <div class="mb-3">
+                    <label><strong>Importe:</strong></label> @Html.DisplayTextFor(m => m.importe)
+                </div>
+                <form action="@Url.Action("BorrarPago","Pago")" method="post">
+                    <input type="hidden" name="IdPago" class="form-control" value="@Html.DisplayTextFor(m => m.IdPago)" />
+
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                    <a class="btn btn-warning" href="@Url.Action("Index","Pago")"> Volver </a>
+                </form>
+            </div>
+    </div>
+</div>
+

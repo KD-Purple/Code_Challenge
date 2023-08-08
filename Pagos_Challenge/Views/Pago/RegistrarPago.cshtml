@@ -1,0 +1,50 @@
+﻿@model Pagos_Challenge.Models.Pago
+
+@{
+    ViewBag.Title = "RegistrarPago";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row" style="margin-top:30px">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header bg-danger text-white">
+                <h4>Realizar Pago</h4>
+            </div>
+            <div class="card-body">
+                <form action="@Url.Action("RegistrarPago","Pago")" method="post">
+                    <div class="mb-3">
+                        <label>Ingresar Producto/Servicio:</label>
+                        <input type="text" name="pago" class="form-control" placeholder="Ej.Telmex,celular" />
+                    </div>
+                    <div class="mb-3">
+                        <label>Fecha:</label>
+                        <input type="date" name="fecha" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label>Ingresar el importe del pago:</label>
+                        <input type="number" name="importe" class="form-control" />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Registrar</button>
+                    <a class="btn btn-warning" href="@Url.Action("Index","Pago")"> Volver </a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    @if (TempData["MensajeError"] != null)
+    {
+        <script>
+            // Muestra el mensaje de error con un modal
+            alert("@TempData["MensajeError"]");
+        </script>
+    }
+}
+
+
+
+
+

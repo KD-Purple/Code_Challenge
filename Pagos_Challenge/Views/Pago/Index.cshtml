@@ -1,0 +1,53 @@
+﻿@model List<Pagos_Challenge.Models.Pago>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Pagos</h2>
+
+    <div class="row" style="margin-top:30px">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header bg-danger text-white">
+                    <h4>Historial de Pagos</h4>
+                </div>
+                <div class="card-body">
+                    <a class="btn btn-success" href="@Url.Action("RegistrarPago","Pago")"><i class="bi bi-plus-circle-fill"></i> Nuevo Pago </a> <a class="btn btn-danger" href="@Url.Action("MultipleBorrar","Pago")"><i class="bi bi-trash3-fill"></i> Borrar Seleccionadas </a>
+                    <hr />
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>ID</th>
+                                    <th>Producto/Servicio</th>
+                                    <th>Fecha</th>
+                                    <th>Importe</th>
+                                    <th width="150px">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (Pagos_Challenge.Models.Pago item in Model) { 
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" name="ids" value="@item.IdPago" />
+                                    </td>
+                                    <td>@item.IdPago</td>
+                                    <td>@item.pago</td>
+                                    <td>@item.fecha.ToString("dd/MM/yyyy")</td>
+                                    <td>$@item.importe</td>
+                                    <td>
+                                        <a class="btn btn-primary" data-bs-toggle="tooltip" title="Editar" href="@Url.Action("EditarPago","Pago", new { idPago = item.IdPago})"><i class="bi bi-pencil-square"></i></a>
+                                        <a class="btn btn-danger" data-bs-toggle="tooltip" title="Borrar" href="@Url.Action("BorrarPago","Pago", new { idPago = item.IdPago})"><i class="bi bi-trash3-fill"></i></a>
+                                    </td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
